@@ -72,10 +72,10 @@ public class BranchService {
 		}
 		return branches;
 	}
-	@Transactional
-	public Branch patch(int id, JsonPatch jsonPatch) throws JsonPatchException, JsonProcessingException {
-		Branch branch = branchRepository.findById(id).get();
-		JsonNode branchPatched = jsonPatch.apply(objectMapper.convertValue(branch, JsonNode.class));
-		return branchRepository.save(objectMapper.treeToValue(branchPatched, Branch.class));
+	public Branch patch(int id, Branch branch) {
+		Branch branches = branchRepository.findById(id).get();
+		branches.setBranchDetails(branch.getBranchDetails());
+		branches.setBranchName(branch.getBranchName());
+		return branches;
 	}
 }

@@ -3,6 +3,7 @@ package com.organizationManagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,9 +62,8 @@ public class BranchController {
 		return ResponseEntity.ok(branchService.updateDetails(id, branch));
 	}
 
-	@PatchMapping(path = "/{id}",consumes = "application/json-patch+json")
-	public ResponseEntity<Branch> update(@Valid @RequestParam(name = "id") int id, @Valid @RequestBody JsonPatch jsonPatch)
-			throws JsonProcessingException, JsonPatchException {
-		return ResponseEntity.ok(branchService.patch(id, jsonPatch));
+	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Branch> update( @RequestParam(name = "id") int id, @RequestBody Branch branch){
+		return ResponseEntity.ok(branchService.patch(id, branch));
 	}
 }
