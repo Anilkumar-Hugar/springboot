@@ -5,6 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import com.organizationManagement.entity.Branch;
 import com.organizationManagement.repository.BranchRepository;
 
@@ -23,6 +28,8 @@ public class BranchService {
 	private BranchRepository branchRepository;
 	@PersistenceContext
 	private EntityManager entityManager;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	public Branch createBranch(Branch branch) {
 		return branchRepository.save(branch);
@@ -37,18 +44,12 @@ public class BranchService {
 		query.setFirstResult(0);
 		query.setMaxResults(5);
 		return query.getResultList();
+
 	}
 
 	public Branch getDetailsById(int id) {
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Branch> criteriaQuery = criteriaBuilder.createQuery(Branch.class);
-		Root<Branch> root = criteriaQuery.from(Branch.class);
-		if (id != 0) {
-			criteriaQuery.where(criteriaBuilder.equal(root.get("branchId"), id));
+		Branch branch = branchRepository.findById(id).get();
 
-		} else
-			throw new IllegalArgumentException("entered id is invalid");
-		Branch branch = entityManager.createQuery(criteriaQuery).getSingleResult();
 		return branch;
 	}
 
@@ -70,5 +71,11 @@ public class BranchService {
 			throw new IllegalArgumentException("Entered id is not available");
 		}
 		return branches;
+	}
+	@Transactional
+	public Branch patch(int id, JsonPatch jsonPatch) throws JsonPatchException, JsonProcessingException {
+		Branch branch = branchRepository.findById(id).get();
+		JsonNode branchPatched = jsonPatch.apply(objectMapper.convertValue(branch, JsonNode.class));
+		return branchRepository.save(objectMapper.treeToValue(branchPatched, Branch.class));
 	}
 }

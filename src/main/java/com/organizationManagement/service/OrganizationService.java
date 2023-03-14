@@ -64,7 +64,8 @@ public class OrganizationService {
 		return entityManager.createQuery(criteriaQuery).getSingleResult();
 	}
 
-	public ResponseEntity<String> deleteDetailsById(OrganizationKeyClass organizationKeyClass) {
+	public ResponseEntity<String> deleteDetailsById(int id,String name) {
+		OrganizationKeyClass organizationKeyClass=new OrganizationKeyClass(id,name);
 		organizationRepository.deleteById(organizationKeyClass);
 		return ResponseEntity.ok("details deleted ");
 	}
