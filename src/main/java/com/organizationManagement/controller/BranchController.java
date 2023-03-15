@@ -41,7 +41,7 @@ public class BranchController {
 	@GetMapping
 	@Operation(summary = "Display all details")
 	public ResponseEntity<List<Branch>> getAllDetails(int pageNo,int pageSize) {
-		Pageable pageable=(Pageable) PageRequest.of(pageNo, pageSize);
+		Pageable pageable=PageRequest.of(pageNo, pageSize);
 		return ResponseEntity.ok(branchService.getAllDetails(pageable));
 	}
 

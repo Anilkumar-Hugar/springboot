@@ -11,7 +11,7 @@ import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class SwaggerConfig {
 	@Bean
-	public GroupedOpenApi openapi() {
+	 GroupedOpenApi openapi() {
 		return GroupedOpenApi
 				.builder()
 				.group("Organization Management")
@@ -21,7 +21,7 @@ public class SwaggerConfig {
 				.build();
 	}
 	@Bean
-	public OpenAPI openApi() {
+    OpenAPI api() {
 		return new OpenAPI()
 				.info(new Info().title("Organization Managemenet")
 						.description("Crud operations using organization and branch entities")
