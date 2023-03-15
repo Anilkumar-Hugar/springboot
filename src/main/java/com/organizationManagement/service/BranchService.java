@@ -69,8 +69,6 @@ public class BranchService {
 			dbBranch.setBranchDetails(inputbranch.getBranchDetails());
 			dbBranch.setOrganization(inputbranch.getOrganization());
 			updatedBranch = branchRepository.save(dbBranch);
-		} else {
-			throw new IllegalArgumentException("Entered id is not available");
 		}
 		return updatedBranch;
 	}

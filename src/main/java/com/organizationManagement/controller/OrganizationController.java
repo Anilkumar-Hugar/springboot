@@ -18,7 +18,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.organizationManagement.entity.Organization;
-import com.organizationManagement.repository.OrganizationRepository;
 import com.organizationManagement.service.OrganizationService;
 
 import io.swagger.v3.oas.annotations.Operation;
