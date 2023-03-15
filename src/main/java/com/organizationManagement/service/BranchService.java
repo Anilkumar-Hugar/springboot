@@ -1,8 +1,11 @@
 package com.organizationManagement.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,21 +38,22 @@ public class BranchService {
 		return branchRepository.save(branch);
 	}
 
-	public List<Branch> getAllDetails() {
+	public List<Branch> getAllDetails(Pageable pageable) {
+		pageable.getPageNumber();
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Branch> criteriaQuery = criteriaBuilder.createQuery(Branch.class);
 		Root<Branch> root = criteriaQuery.from(Branch.class);
 		criteriaQuery.select(root);
 		TypedQuery<Branch> query = entityManager.createQuery(criteriaQuery);
-		query.setFirstResult(0);
-		query.setMaxResults(5);
+		
+		query.setFirstResult(pageable.getPageNumber());
+		query.setMaxResults(pageable.getPageSize());
 		return query.getResultList();
 
 	}
 
 	public Branch getDetailsById(int id) {
 		Branch branch = branchRepository.findById(id).get();
-
 		return branch;
 	}
 

@@ -65,11 +65,11 @@ public class OrganizationController {
 		return ResponseEntity.ok(organizationService.updateById(id, name, organization));
 	}
 
-	@PatchMapping
+	@PatchMapping(consumes = "application/json-patch+json")
+	@Operation(summary = "update partial details")
 	public ResponseEntity<Organization> updateDetails(@Valid @RequestParam(name = "id") int id,
 			@Valid @RequestParam(name = "name") String name, @Valid @RequestBody JsonPatch jsonPatch)
 			throws JsonProcessingException, IllegalArgumentException, JsonPatchException {
 		return ResponseEntity.ok(organizationService.patch(id, name, jsonPatch));
-
 	}
 }

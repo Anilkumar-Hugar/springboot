@@ -45,8 +45,7 @@ public class OrganizationService {
 		TypedQuery<Organization> query = entityManager.createQuery(criteriaQuery);
 		query.setFirstResult(0);
 		query.setMaxResults(5);
-		List<Organization> list = query.getResultList();
-		return list;
+		return query.getResultList();
 	}
 
 	public Organization getDetailsById(int id, String name) {
