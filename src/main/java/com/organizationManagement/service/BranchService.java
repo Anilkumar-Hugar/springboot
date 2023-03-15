@@ -59,23 +59,28 @@ public class BranchService {
 	}
 
 	@Transactional
-	public Branch updateDetails(int id, Branch branch) {
-		Branch branches = null;
-		branches = branchRepository.findById(id).get();
+	public Branch updateDetails(int id, Branch inputbranch) {
+		Branch dbBranch = null;
+		Branch updatedBranch = null;
+		dbBranch = branchRepository.findById(id).get();
 		// entityManager.lock(branch, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 		if (id != 0) {
-			branches.setBranchName(branch.getBranchName());
-			branches.setBranchDetails(branch.getBranchDetails());
-			branches.setOrganization(branch.getOrganization());
+			dbBranch.setBranchName(inputbranch.getBranchName());
+			dbBranch.setBranchDetails(inputbranch.getBranchDetails());
+			dbBranch.setOrganization(inputbranch.getOrganization());
+			updatedBranch = branchRepository.save(dbBranch);
 		} else {
 			throw new IllegalArgumentException("Entered id is not available");
 		}
-		return branches;
+		return updatedBranch;
 	}
-	public Branch patch(int id, Branch branch) {
-		Branch branches = branchRepository.findById(id).get();
-		branches.setBranchDetails(branch.getBranchDetails());
-		branches.setBranchName(branch.getBranchName());
-		return branches;
+
+	public Branch patch(int id, JsonPatch jsonPatch)
+			throws IllegalArgumentException, JsonPatchException, JsonProcessingException {
+		Branch dbBranch = branchRepository.findById(id).get();
+		JsonNode jsonNode = jsonPatch.apply(objectMapper.convertValue(dbBranch, JsonNode.class));
+		Branch patched = objectMapper.treeToValue(jsonNode, Branch.class);
+
+		return branchRepository.save(patched);
 	}
 }

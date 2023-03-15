@@ -62,8 +62,9 @@ public class BranchController {
 		return ResponseEntity.ok(branchService.updateDetails(id, branch));
 	}
 
-	@PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Branch> update( @RequestParam(name = "id") int id, @RequestBody Branch branch){
-		return ResponseEntity.ok(branchService.patch(id, branch));
+	@PatchMapping(consumes ="application/json-patch+json")
+	public ResponseEntity<Branch> update(@Valid @RequestParam(name = "id") int id,@Valid  @RequestBody JsonPatch jsonPatch) throws JsonProcessingException, IllegalArgumentException, JsonPatchException{
+		Branch patchedBranch=branchService.patch(id, jsonPatch);
+		return ResponseEntity.ok(patchedBranch);
 	}
 }

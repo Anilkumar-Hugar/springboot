@@ -28,7 +28,6 @@ public class Branch {
 	@Column(nullable = false)
 	@NotBlank(message = "branch details should not be blank")
 	private String branchDetails;
-	@NotBlank(message = "organization details should not be null")
 	@ManyToOne(targetEntity =Organization.class)
 	@JoinColumns({
 		@JoinColumn(name = "organization_id", referencedColumnName = "organizationId"),

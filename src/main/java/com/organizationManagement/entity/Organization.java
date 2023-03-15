@@ -18,12 +18,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "organization")
 public class Organization {
+	@NonNull
 	@EmbeddedId
 	private OrganizationKeyClass organizationKeyClass;
 	@NonNull
 	@NotBlank(message = "organization details should not be null")
 	private String OrganizationDetails;
-
 	@Version
 	private long version;
 	

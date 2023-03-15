@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import com.organizationManagement.entity.Organization;
 import com.organizationManagement.entity.OrganizationKeyClass;
 import com.organizationManagement.repository.OrganizationRepository;
@@ -25,6 +30,8 @@ public class OrganizationService {
 	private OrganizationRepository organizationRepository;
 	@Autowired
 	private EntityManager entityManager;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	public Organization createOrganization(Organization organization) {
 		return organizationRepository.save(organization);
@@ -64,8 +71,8 @@ public class OrganizationService {
 		return entityManager.createQuery(criteriaQuery).getSingleResult();
 	}
 
-	public ResponseEntity<String> deleteDetailsById(int id,String name) {
-		OrganizationKeyClass organizationKeyClass=new OrganizationKeyClass(id,name);
+	public ResponseEntity<String> deleteDetailsById(int id, String name) {
+		OrganizationKeyClass organizationKeyClass = new OrganizationKeyClass(id, name);
 		organizationRepository.deleteById(organizationKeyClass);
 		return ResponseEntity.ok("details deleted ");
 	}
@@ -77,8 +84,17 @@ public class OrganizationService {
 		if (organizationKeyClass != null) {
 			organizations.setOrganizationKeyClass(organization.getOrganizationKeyClass());
 			organizations.setOrganizationDetails(organization.getOrganizationDetails());
-
+			organizations.setOrganizationDetails(organization.getOrganizationDetails());
 		}
-		return organizations;
+		return organizationRepository.save(organizations);
+	}
+
+	public Organization patch(int id, String name, JsonPatch jsonPatch)
+			throws IllegalArgumentException, JsonPatchException, JsonProcessingException {
+		OrganizationKeyClass organizationKeyClass = new OrganizationKeyClass(id, name);
+		Organization organization = organizationRepository.findById(organizationKeyClass).get();
+		JsonNode jsonNode = jsonPatch.apply(objectMapper.convertValue(organization, JsonNode.class));
+		Organization patchedData = objectMapper.treeToValue(jsonNode, Organization.class);
+		return organizationRepository.save(patchedData);
 	}
 }
