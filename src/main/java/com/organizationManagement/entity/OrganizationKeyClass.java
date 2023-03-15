@@ -16,7 +16,5 @@ import lombok.NoArgsConstructor;
 public class OrganizationKeyClass implements Serializable{
 	private int organizationId;
 	private String organizationName;
-	public OrganizationKeyClass(int organizationId) {
-		this.organizationId=organizationId;
-	}
+	
 }
