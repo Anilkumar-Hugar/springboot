@@ -29,7 +29,6 @@ public class SecurityConfig {
 				.authorizeHttpRequests().requestMatchers("/authenticate/create").permitAll().and()
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/organization/**").authenticated())
 				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().formLogin();
-		httpSecurity.authorizeHttpRequests().anyRequest().permitAll();
 		return httpSecurity.build();
 	}
 
