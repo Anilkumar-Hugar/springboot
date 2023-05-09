@@ -24,12 +24,14 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(csrf -> csrf.disable())
 
-				.authorizeHttpRequests(request -> request.requestMatchers("/swagger-ui/**").permitAll())
+				.authorizeHttpRequests(request -> request.requestMatchers("/v3/api-docs/**",
+			            "/swagger-ui/**",
+			            "/v2/api-docs/**",
+			            "/swagger-resources/**").permitAll())
 				.authorizeHttpRequests().requestMatchers("/authenticate/login").permitAll().and()
 				.authorizeHttpRequests().requestMatchers("/authenticate/create").permitAll().and()
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/organization/**").authenticated())
 				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().formLogin();
-		httpSecurity.authorizeHttpRequests().anyRequest().permitAll();
 		return httpSecurity.build();
 	}
 
