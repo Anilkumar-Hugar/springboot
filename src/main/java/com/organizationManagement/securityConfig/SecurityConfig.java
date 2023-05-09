@@ -31,7 +31,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests().requestMatchers("/authenticate/login").permitAll().and()
 				.authorizeHttpRequests().requestMatchers("/authenticate/create").permitAll().and()
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/organization/**").authenticated())
-				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().formLogin();
+				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().httpBasic();
 		return httpSecurity.build();
 	}
 
