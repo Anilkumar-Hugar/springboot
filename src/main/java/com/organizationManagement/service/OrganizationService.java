@@ -2,6 +2,7 @@ package com.organizationManagement.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -80,20 +81,25 @@ public class OrganizationService {
 	public Organization updateById(int id, String name, Organization organization) {
 		OrganizationKeyClass organizationKeyClass = new OrganizationKeyClass(id, name);
 		Organization organizations = organizationRepository.findById(organizationKeyClass).get();
-		if (organizationKeyClass != null) {
-			organizations.setOrganizationKeyClass(organization.getOrganizationKeyClass());
-			organizations.setOrganizationDetails(organization.getOrganizationDetails());
-			organizations.setOrganizationDetails(organization.getOrganizationDetails());
-		}
+
+		organizations.setOrganizationKeyClass(organization.getOrganizationKeyClass());
+		organizations.setOrganizationDetails(organization.getOrganizationDetails());
+		organizations.setOrganizationDetails(organization.getOrganizationDetails());
 		return organizationRepository.save(organizations);
 	}
 
 	public Organization patch(int id, String name, JsonPatch jsonPatch)
 			throws IllegalArgumentException, JsonPatchException, JsonProcessingException {
 		OrganizationKeyClass organizationKeyClass = new OrganizationKeyClass(id, name);
-		Organization organization = organizationRepository.findById(organizationKeyClass).get();
-		JsonNode jsonNode = jsonPatch.apply(objectMapper.convertValue(organization, JsonNode.class));
-		Organization patchedData = objectMapper.treeToValue(jsonNode, Organization.class);
-		return organizationRepository.save(patchedData);
+		Optional<Organization> organization = organizationRepository.findById(organizationKeyClass);
+
+		if (organization.isPresent()) {
+
+			JsonNode jsonNode = jsonPatch.apply(objectMapper.convertValue(organization, JsonNode.class));
+			Organization patchedData = objectMapper.treeToValue(jsonNode, Organization.class);
+			return organizationRepository.save(patchedData);
+		}
+		return null;
+
 	}
 }

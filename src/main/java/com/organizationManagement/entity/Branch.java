@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Branch {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "branch_generator")
+	@SequenceGenerator(name = "branch_generator", sequenceName = "branch_generator", allocationSize = 1)
 	private int branchId;
 	@Column(nullable = false)
 	@NotBlank(message = "branch name should not be blank")

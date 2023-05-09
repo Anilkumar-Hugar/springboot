@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: postgres
-    url: jdbc:postgresql://localhost:5432/employeeManagement
+    url: jdbc:postgresql://localhost:5432/organizationDatabase
     driverClassName: org.postgresql.Driver
     password: '1234'
   jpa:
@@ -18,3 +18,7 @@ logging:
       hibernate:
         type: trace
         SQL: debug
+server:
+  port: 9090
+app:
+  key: 77397A24432646294A404E635266546A576E5A7234753778214125442A472D4B
