@@ -15,7 +15,13 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 @Configuration
+<<<<<<< HEAD
 @SecurityScheme(name = "basicAuth",scheme = "basic",type = SecuritySchemeType.APIKEY,in = SecuritySchemeIn.HEADER)
+=======
+@SecurityScheme(name = "basicAuth",scheme = "basic",type = SecuritySchemeType.HTTP,in = SecuritySchemeIn.DEFAULT)
+	
+
+>>>>>>> fab153694fabd2a63e88ecab8b5134873bfe8da1
 public class SwaggerConfig {
 	@Bean
 	 GroupedOpenApi openapi() {
