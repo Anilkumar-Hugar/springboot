@@ -25,27 +25,12 @@ public class SecurityConfigForJwt {
 	private UserService service;
 
 	@Bean
-<<<<<<< HEAD:src/main/java/com/organizationManagement/securityConfig/SecurityConfigForJwt.java
 	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
 		security.csrf().disable()
 				.authorizeHttpRequests(request -> request.requestMatchers("/authenticate/login", "/authenticate/signin")
 						.permitAll().anyRequest().authenticated())
 				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).formLogin();
 		return security.build();
-=======
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf(csrf -> csrf.disable())
-
-				.authorizeHttpRequests(request -> request.requestMatchers("/v3/api-docs/**",
-			            "/swagger-ui/**",
-			            "/v2/api-docs/**",
-			            "/swagger-resources/**").permitAll())
-				.authorizeHttpRequests().requestMatchers("/authenticate/login").permitAll().and()
-				.authorizeHttpRequests().requestMatchers("/authenticate/create").permitAll().and()
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/organization/**").authenticated())
-				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().httpBasic();
-		return httpSecurity.build();
->>>>>>> fab153694fabd2a63e88ecab8b5134873bfe8da1:src/main/java/com/organizationManagement/securityConfig/SecurityConfig.java
 	}
 
 	@Bean
@@ -60,3 +45,4 @@ public class SecurityConfigForJwt {
 		return managerBuilder.build();
 	}
 }
+
