@@ -1,5 +1,6 @@
 package com.organizationManagement.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Branch {
 	@Column(nullable = false)
 	@NotBlank(message = "branch details should not be blank")
 	private String branchDetails;
-	@ManyToOne(targetEntity =Organization.class)
+	@ManyToOne(targetEntity =Organization.class,cascade = CascadeType.ALL)
 	@JoinColumns({
 		@JoinColumn(name = "organization_id", referencedColumnName = "organizationId"),
 	    @JoinColumn(name = "organization_name", referencedColumnName = "organizationName")})

@@ -10,29 +10,27 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.organizationManagement.jwtConfig.JwtTokenFilter;
 import com.organizationManagement.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
+public class SecurityConfigForJwt {
+	@Autowired
+	private JwtTokenFilter filter;
 	@Autowired
 	private UserService service;
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf(csrf -> csrf.disable())
-
-				.authorizeHttpRequests(request -> request.requestMatchers("/v3/api-docs/**",
-			            "/swagger-ui/**",
-			            "/v2/api-docs/**",
-			            "/swagger-resources/**").permitAll())
-				.authorizeHttpRequests().requestMatchers("/authenticate/login").permitAll().and()
-				.authorizeHttpRequests().requestMatchers("/authenticate/create").permitAll().and()
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/organization/**").authenticated())
-				.authorizeHttpRequests().requestMatchers("/branch/**").authenticated().and().httpBasic();
-		return httpSecurity.build();
+	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+		security.csrf().disable()
+				.authorizeHttpRequests(request -> request.requestMatchers("/authenticate/login", "/authenticate/signin")
+						.permitAll().anyRequest().authenticated())
+				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).formLogin();
+		return security.build();
 	}
 
 	@Bean
@@ -42,10 +40,8 @@ public class SecurityConfig {
 
 	@Bean
 	public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
-		AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity
-				.getSharedObject(AuthenticationManagerBuilder.class);
-		authenticationManagerBuilder.userDetailsService(service).passwordEncoder(passwordEncoder());
-		return authenticationManagerBuilder.build();
-
+		AuthenticationManagerBuilder managerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+		managerBuilder.userDetailsService(service).passwordEncoder(passwordEncoder());
+		return managerBuilder.build();
 	}
 }

@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @Embeddable
 public class OrganizationKeyClass implements Serializable{
+	
 	private int organizationId;
 	private String organizationName;
 	
