@@ -1,12 +1,18 @@
 package com.organizationManagement.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,10 +29,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.transaction.Transactional;
 
 @Service
 public class OrganizationService {
+	Logger logger=LoggerFactory.getLogger(OrganizationService.class); 
 	@Autowired
 	private OrganizationRepository organizationRepository;
 	@Autowired
@@ -37,8 +43,9 @@ public class OrganizationService {
 	public Organization createOrganization(Organization organization) {
 		return organizationRepository.save(organization);
 	}
-
+	@Scheduled(cron = "0 * * * * *")
 	public List<Organization> getDetails() {
+		logger.info("scheduled a method call in organization service for getAllDetails() method with {}"+new Date());
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
 		Root<Organization> root = criteriaQuery.from(Organization.class);
@@ -77,7 +84,7 @@ public class OrganizationService {
 		return ResponseEntity.ok("details deleted ");
 	}
 
-	@Transactional
+	@Transactional(isolation = Isolation.READ_COMMITTED,timeout = 10)
 	public Organization updateById(int id, String name, Organization organization) {
 		OrganizationKeyClass organizationKeyClass = new OrganizationKeyClass(id, name);
 		Organization organizations = organizationRepository.findById(organizationKeyClass).get();

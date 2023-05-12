@@ -2,6 +2,7 @@ package com.organizationManagement.jwtConfig;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtToken {
 	long expDate = 30000;
-	String key = "123345567jdhsfish";
+	@Value("${app.key}")
+	private String key;
 
 	public String generateJwtToken(Authentication authentication) {
 

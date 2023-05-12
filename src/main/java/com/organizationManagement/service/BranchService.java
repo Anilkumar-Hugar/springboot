@@ -1,11 +1,15 @@
 package com.organizationManagement.service;
 
-
+import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,10 +25,10 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import jakarta.transaction.Transactional;
 
 @Service
 public class BranchService {
+	Logger logger = LoggerFactory.getLogger(BranchService.class);
 	@Autowired
 	private BranchRepository branchRepository;
 	@PersistenceContext
@@ -36,14 +40,16 @@ public class BranchService {
 		return branchRepository.save(branch);
 	}
 
+	// @Scheduled(cron = "0 * * * *")
 	public List<Branch> getAllDetails(Pageable pageable) {
+		logger.info("branch service class calling for every hour and time is: {}" + new Date());
 		pageable.getPageNumber();
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Branch> criteriaQuery = criteriaBuilder.createQuery(Branch.class);
 		Root<Branch> root = criteriaQuery.from(Branch.class);
 		criteriaQuery.select(root);
 		TypedQuery<Branch> query = entityManager.createQuery(criteriaQuery);
-		
+
 		query.setFirstResult(pageable.getPageNumber());
 		query.setMaxResults(pageable.getPageSize());
 		return query.getResultList();
@@ -60,12 +66,11 @@ public class BranchService {
 		return "details deleted successfully";
 	}
 
-	@Transactional
+	@Transactional(isolation = Isolation.READ_UNCOMMITTED)
 	public Branch updateDetails(int id, Branch inputbranch) {
 		Branch dbBranch = null;
 		Branch updatedBranch = null;
 		dbBranch = branchRepository.findById(id).get();
-		// entityManager.lock(branch, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 		if (id != 0) {
 			dbBranch.setBranchName(inputbranch.getBranchName());
 			dbBranch.setBranchDetails(inputbranch.getBranchDetails());
