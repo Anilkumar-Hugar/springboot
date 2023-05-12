@@ -40,7 +40,6 @@ public class BranchService {
 		return branchRepository.save(branch);
 	}
 
-	// @Scheduled(cron = "0 * * * *")
 	public List<Branch> getAllDetails(Pageable pageable) {
 		logger.info("branch service class calling for every hour and time is: {}" + new Date());
 		pageable.getPageNumber();

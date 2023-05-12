@@ -43,9 +43,9 @@ public class OrganizationService {
 	public Organization createOrganization(Organization organization) {
 		return organizationRepository.save(organization);
 	}
-	@Scheduled(cron = "0 * * * * *")
+	@Scheduled(cron = "0 0 * * * *")
 	public List<Organization> getDetails() {
-		logger.info("scheduled a method call in organization service for getAllDetails() method with {}"+new Date());
+		logger.info("scheduled a method call in organization service for getAllDetails() method with {} "+new Date());
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
 		Root<Organization> root = criteriaQuery.from(Organization.class);
