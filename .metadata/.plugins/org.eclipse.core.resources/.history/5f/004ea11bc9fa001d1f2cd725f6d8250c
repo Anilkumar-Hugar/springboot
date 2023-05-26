@@ -1,0 +1,14 @@
+package com.bean;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+	public static void main(String[] args) {
+		BeanFactory resource=new ClassPathXmlApplicationContext("bean.xml");
+//		Bean bean=resource.getBean("bean",Bean.class);
+		Bean bean2=resource.getBean("details",Bean.class);
+		System.out.println(bean2.getMsg());
+		System.out.println(bean.getMsg());
+	}
+}

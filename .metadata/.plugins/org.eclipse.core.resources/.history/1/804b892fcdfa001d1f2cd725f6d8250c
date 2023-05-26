@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bean" class="com.bean.Bean">
+		<property name="msg" value="WELCOME TO SPRING BEAN"></property>
+		
+	</bean>
+	<bean id="details" class="com.bean.Bean">
+		<constructor-arg name="msg" value="WELCOME"/>
+	</bean>
+	<bean id="bean2" class="com.bean.Bean">
+		<constructor-arg name="msg" value="This is an example using the spring bean factory"></constructor-arg>
+	</bean>
+</beans>

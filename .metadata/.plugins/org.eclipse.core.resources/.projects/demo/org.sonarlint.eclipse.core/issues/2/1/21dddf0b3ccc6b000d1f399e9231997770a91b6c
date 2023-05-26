@@ -1,0 +1,15 @@
+
+}	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(£²®«üÿÿÿÿ8°ˆë„1HŸRMAJORZ
+CODE_SMELL
+¤
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(£²®«üÿÿÿÿ8â·ºŠ…1HRMINORZ
+CODE_SMELL
+p	java:S106"9Replace this use of System.out or System.err by a logger.(¿Üµşÿÿÿÿ8â·ºŠ…1HœRMAJORZ
+CODE_SMELL
+k	java:S106"9Replace this use of System.out or System.err by a logger.(Ö”³“8â·ºŠ…1H—RMAJORZ
+CODE_SMELL
+t
+java:S1172"<Remove these unused method parameters "request", "response".(£²®«üÿÿÿÿ8°ˆë„1H˜RMAJORZ
+CODE_SMELL
+p	java:S106"9Replace this use of System.out or System.err by a logger.(ÎŒÎ¶úÿÿÿÿ8â·ºŠ…1H RMAJORZ
+CODE_SMELL

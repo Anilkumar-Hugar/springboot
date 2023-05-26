@@ -1,0 +1,21 @@
+package com.bean;
+
+import static org.junit.Assert.assertFalse;
+
+import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class BeanTest {
+	@Test
+	public void BeanTest() {
+		BeanFactory factory=new ClassPathXmlApplicationContext("bean.xml");
+		Bean bean=factory.getBean("bean",Bean.class);
+		assertFalse(Bean.postConstruct());
+		ApplicationContext  context=new ClassPathXmlApplicationContext("bean.xml");
+		Bean bean2=context.getBean("bean2",Bean.class);
+		bean2.postConstruct();
+		
+	}
+}

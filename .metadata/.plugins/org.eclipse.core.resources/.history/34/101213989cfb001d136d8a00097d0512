@@ -1,0 +1,11 @@
+databaseChangeLog:
+    - changeSet: ams
+      id: 1
+      author: anil
+      changes:
+        - sqlfile: 
+               path: db/changelog/UserTable.sql
+                   
+ # - include:
+  #    file: db/changelog/UserTable.sql,db/changelog/insert.sql
+      #db/changelog/db.changelogExample.yaml

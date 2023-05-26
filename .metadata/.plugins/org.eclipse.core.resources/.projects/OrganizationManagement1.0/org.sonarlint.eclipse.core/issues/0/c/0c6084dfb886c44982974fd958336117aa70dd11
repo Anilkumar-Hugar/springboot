@@ -1,0 +1,14 @@
+
+Ž	java:S116"^Rename this field "OrganizationDetails" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ØÍèûÿÿÿÿHûRMINORZ
+CODE_SMELL
+k
+java:S1128"?Remove this unused import 'jakarta.persistence.GeneratedValue'.(‘ŒÇŒH€RMINORZ
+CODE_SMELL
+k
+java:S1128"?Remove this unused import 'jakarta.persistence.GenerationType'.(²ºëÊHùRMINORZ
+CODE_SMELL
+Š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÜçË ûÿÿÿÿHøRMINORZ
+CODE_SMELL
+_
+java:S1128	"3Remove this unused import 'jakarta.persistence.Id'.(š¨ô HüRMINORZ
+CODE_SMELL

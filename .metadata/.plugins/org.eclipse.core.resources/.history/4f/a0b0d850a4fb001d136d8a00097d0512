@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-Student
+      author: anil
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: id
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: marks 
+                  type: BIGINT
+              - column:
+                  name: percentage
+                  type: BIGINT
+              - column:
+                  name: course
+                  type: VARCHAR(250)
+            tableName: Student
+        
+            

@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+         id: 1
+         author: anil
+         file: db/changelog/db.changelogExample.yaml
+         relativeToChangelogFile: false
+         context: 
+         labels: 
+         ignore: 
+         created: 
