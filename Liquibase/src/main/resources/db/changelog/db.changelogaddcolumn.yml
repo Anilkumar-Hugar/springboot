@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+        id: addcolumn
+        author: anil
+        context: adding column
+        labels: adding column example
+        changes:
+            - addColumn:
+                    tableName: Student
+                    columns:
+                         - column:
+                             name: pincode
+                             type: INT
+    
+    
+    

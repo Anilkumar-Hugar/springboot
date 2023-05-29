@@ -12,5 +12,10 @@ databaseChangeLog:
        id: anil
        author: anil
        file: db/changelog/db.changelogupdate.xml
+  - include:
+       id: anil
+       author: anil
+       file: db/changelog/db.changelogaddcolumn.yml
+      
            
                 
