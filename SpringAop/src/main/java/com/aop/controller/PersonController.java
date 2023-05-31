@@ -35,13 +35,13 @@ public class PersonController {
 		return service.getAll();
 	}
 
-	@GetMapping("/getById/{id}")
+	@GetMapping("/getById")
 	public Optional<Person> findById(@RequestParam(name = "id") int id) {
 		return service.findById(id);
 	}
 
 	@DeleteMapping("/delete")
-	public String deleteById(int id) {
+	public String deleteById(@RequestParam(name="id") int id) {
 		return service.deleteById(id);
 	}
 

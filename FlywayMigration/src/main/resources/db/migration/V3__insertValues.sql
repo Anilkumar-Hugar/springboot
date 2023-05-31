@@ -1,0 +1,1 @@
+insert into person (id,city,name,pincode,email)values(1,'hyd','Anil',500036,'anil@gmail.com')

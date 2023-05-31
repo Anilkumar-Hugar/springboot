@@ -23,7 +23,7 @@ public class PersonAop {
 		String className = joinPoint.getTarget().getClass().toString();
 		logger.info("method invoked from " + className + " with method name " + signature);
 		Object object = joinPoint.proceed();
-		logger.info("Response from the DB: {}", mapper.writeValueAsString(object));
+		logger.info("Response from the DB: {}",mapper.writeValueAsString(object));
 		return object;
 	}
 
