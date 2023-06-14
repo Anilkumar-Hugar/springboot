@@ -1,8 +1,0 @@
-databaseChangeLog:
-  - changeset: 
-      id: 11
-      name: anil
-      changes:
-        - sql:
-           sql: insert into Student(id,name,marks,percentage,course)values(1,"anil",524,84,"bsc")
-        

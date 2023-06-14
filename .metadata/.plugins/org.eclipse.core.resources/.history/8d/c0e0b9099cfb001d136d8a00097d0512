@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/UserTable.sql,db/changelog/insert.sql

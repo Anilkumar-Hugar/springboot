@@ -70,6 +70,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\docker\yahoo-stock-standalone-api-master"/>
+			<item value="C:\stockTask"/>
 			<item value="C:\Users\anilkumar.hugar\Downloads\sts\sts\OrganizationManagement1.0"/>
 		</list>
 		<list key="projectNameTemplate">

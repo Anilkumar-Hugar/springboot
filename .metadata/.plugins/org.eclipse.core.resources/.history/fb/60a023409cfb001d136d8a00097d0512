@@ -1,4 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/UserTable.sql,db/changelog/insert.sql
-      #db/changelog/db.changelogExample.yaml

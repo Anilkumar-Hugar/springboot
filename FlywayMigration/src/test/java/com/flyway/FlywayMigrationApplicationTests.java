@@ -18,7 +18,7 @@ class FlywayMigrationApplicationTests {
 	private PersonService personService;
 	
 	@Test
-	public void testCreatePerson() {
+	 void testCreatePerson() {
 		Person person = new Person();
 		person.setId(1);
 		person.setCity("hyd");
@@ -27,18 +27,18 @@ class FlywayMigrationApplicationTests {
 		person.setEmail("sunil@gmail.com");
 		Person per = personService.createPerson(person);
 		assertThat(per).isNotNull();
-		assertEquals(per.getId(), 1);
+		assertEquals(1,per.getId());
 	}
 
 	@Test
-	public void testGetAll() {
+	 void testGetAll() {
 		List<Person> person = personService.findAll();
 		assertThat(personService.findAll()).isNotEmpty();
 		assertEquals(person, personService.findAll());
 	}
 
 	@Test
-	public void testGetById() {
+	 void testGetById() {
 		Person person = personService.findById(1);
 		assertEquals(1, person.getId());
 		assertThat(person).isNotNull();
