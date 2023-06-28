@@ -1,5 +1,5 @@
 
-Ö	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ó†ú›HÜRMINORZ
+d	java:S106"9Replace this use of System.out or System.err by a logger.(≠±–»Hπ^RMAJORZ
 CODE_SMELL
-d	java:S106"9Replace this use of System.out or System.err by a logger.(≠±–»HáRMAJORZ
+Ö	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ó†ú›H∫^RMINORZ
 CODE_SMELL

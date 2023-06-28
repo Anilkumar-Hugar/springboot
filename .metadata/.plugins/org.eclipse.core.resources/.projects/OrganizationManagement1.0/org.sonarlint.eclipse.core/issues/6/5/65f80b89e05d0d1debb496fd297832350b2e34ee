@@ -1,18 +1,18 @@
 
-z
-java:S3655H"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(©ú°ÈøÿÿÿÿHRMAJORZBUG
-Š
-java:S1488;"^Immediately return this expression instead of assigning it to the temporary variable "branch".(Ö…§ÛH™RMINORZ
-CODE_SMELL
-r
-java:S3457,"AFormat specifiers should be used instead of string concatenation.(ıË„ÖùÿÿÿÿH¡RMAJORZ
+
+java:S2629,"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ıË„ÖùÿÿÿÿH¿^RMAJORZ
 CODE_SMELL
 u
-java:S3655;"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ö…§ÛH RMAJORZBUG
-…	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(î œİHRMINORZ
+java:S3655;"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ö…§ÛHÀ^RMAJORZBUG
+r
+java:S3457,"AFormat specifiers should be used instead of string concatenation.(ıË„ÖùÿÿÿÿHÁ^RMAJORZ
 CODE_SMELL
 z
-java:S3655T"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ßÉ„‚ÿÿÿÿÿHŸRMAJORZBUG
-
-java:S2629,"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ıË„ÖùÿÿÿÿHœRMAJORZ
+java:S3655H"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(©ú°ÈøÿÿÿÿHÂ^RMAJORZBUG
+z
+java:S3655T"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ßÉ„‚ÿÿÿÿÿHÃ^RMAJORZBUG
+…	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(î œİHÄ^RMINORZ
+CODE_SMELL
+Š
+java:S1488;"^Immediately return this expression instead of assigning it to the temporary variable "branch".(Ö…§ÛHÅ^RMINORZ
 CODE_SMELL

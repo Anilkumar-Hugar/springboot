@@ -1,9 +1,9 @@
 
-Š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ŞÖƒ ıÿÿÿÿH²RMINORZ
+
+java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ÑƒT8é§í‘…1HŸ^RCRITICALZ
+CODE_SMELL
+Š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ŞÖƒ ıÿÿÿÿH ^RMINORZ
 CODE_SMELL
 Š
-java:S3305"\Inject this field value directly into "authenticationManager", the only method that uses it.(—îÀ:H´RCRITICALZ
-CODE_SMELL
-
-java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ÑƒT8é§í‘…1HÀRCRITICALZ
+java:S3305"\Inject this field value directly into "authenticationManager", the only method that uses it.(—îÀ:H^RCRITICALZ
 CODE_SMELL

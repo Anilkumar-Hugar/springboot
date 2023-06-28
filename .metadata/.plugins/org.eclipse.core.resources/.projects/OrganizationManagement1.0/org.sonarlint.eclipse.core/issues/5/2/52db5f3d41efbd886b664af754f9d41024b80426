@@ -1,11 +1,11 @@
 
 
-java:S26290"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¶ÛãàüÿÿÿÿHÁRMAJORZ
-CODE_SMELL
-…	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(î œİHÂRMINORZ
+java:S26290"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¶ÛãàüÿÿÿÿH»^RMAJORZ
 CODE_SMELL
 z
-java:S3655Z"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¸Áè£ıÿÿÿÿHÃRMAJORZBUG
+java:S3655Z"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¸Áè£ıÿÿÿÿH¼^RMAJORZBUG
 r
-java:S34570"AFormat specifiers should be used instead of string concatenation.(¶ÛãàüÿÿÿÿHÄRMAJORZ
+java:S34570"AFormat specifiers should be used instead of string concatenation.(¶ÛãàüÿÿÿÿH½^RMAJORZ
+CODE_SMELL
+…	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(î œİH¾^RMINORZ
 CODE_SMELL

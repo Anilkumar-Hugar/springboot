@@ -1,6 +1,9 @@
 package com.backtrader.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,9 +15,8 @@ import com.backtrader.userentity.Users;
 import com.backtrader.utils.LoginRequest;
 
 @Service
-public class UserService{
-//public class UserService implements UserDetailsService {
-//	//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//public class UserService{
+public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
@@ -54,8 +56,8 @@ public class UserService{
 		}
 	}
 
-//	@Override
-//	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//		return (UserDetails) userRepository.findByEmail(email);
-//	}
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		return (UserDetails) userRepository.findByEmail(email);
+	}
 }

@@ -14,8 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.backtrader.jwtutils.JwtTokenFilter;
 import com.backtrader.service.UserService;
 
-
-@EnableWebSecurity
+@Configuration
 public class SecurityConfiguaration {
 	@Autowired
 	private JwtTokenFilter filter;
@@ -25,8 +24,7 @@ public class SecurityConfiguaration {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
 		security.csrf(token -> token.disable())
-				.authorizeHttpRequests(request -> request.requestMatchers("/backtrader/login", "/backtrader/create")
-						.permitAll())
+				.authorizeHttpRequests(request -> request.anyRequest().permitAll())
 				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
 				;
 		return security.build();
